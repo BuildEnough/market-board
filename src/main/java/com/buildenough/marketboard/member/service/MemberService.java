@@ -1,6 +1,8 @@
 package com.buildenough.marketboard.member.service;
 
+import com.buildenough.marketboard.member.dto.LoginMemberDto;
 import com.buildenough.marketboard.member.dto.MemberJoinDto;
+import com.buildenough.marketboard.member.dto.MemberLoginDto;
 import com.buildenough.marketboard.member.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,5 +14,9 @@ public class MemberService {
 
     public void join(MemberJoinDto memberJoinDto) {
         memberMapper.insertMember(memberJoinDto);
+    }
+
+    public LoginMemberDto login(MemberLoginDto memberLoginDto) {
+        return memberMapper.findLoginMember(memberLoginDto);
     }
 }

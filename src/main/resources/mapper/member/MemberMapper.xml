@@ -14,4 +14,18 @@
             #{email}
         )
     </insert>
+
+    <select id="findLoginMember" parameterType="com.buildenough.marketboard.member.dto.MemberLoginDto"
+                                 resultType="com.buildenough.marketboard.member.dto.LoginMemberDto">
+        SELECT
+            member_id,
+            login_id,
+            name
+        FROM members
+        WHERE login_id = #{loginId}
+            AND password = #{password}
+            AND deleted_yn = 'N'
+    </select>
 </mapper>
+
+
