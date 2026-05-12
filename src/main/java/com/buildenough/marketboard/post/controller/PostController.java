@@ -1,13 +1,17 @@
 package com.buildenough.marketboard.post.controller;
 
 import com.buildenough.marketboard.member.dto.LoginMemberDto;
+import com.buildenough.marketboard.post.dto.PostListDto;
 import com.buildenough.marketboard.post.dto.PostWriteDto;
 import com.buildenough.marketboard.post.service.PostService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,7 +27,7 @@ public class PostController {
             return "redirect:/members/login";
         }
 
-        return "posts/write";
+        return "post/write";
     }
 
     @PostMapping("/posts")
@@ -40,5 +44,10 @@ public class PostController {
         return "redirect:/";
     }
 
-
+    @GetMapping("/posts")
+    public String list(Model model) {
+        List<PostListDto> posts = postService.findAllPosts();
+        model.addAttribute("posts", posts);
+        return "post/list";
+    }
 }
