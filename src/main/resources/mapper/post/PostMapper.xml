@@ -29,4 +29,19 @@
         order by p.post_id DESC
     </select>
 
+    <select id="findPostById" parameterType="long" resultType="com.buildenough.marketboard.post.dto.PostDetailDto">
+        SELECT
+            p.post_id,
+            p.member_id,
+            p.title,
+            p.content,
+            m.name AS write_name,
+            p.view_count,
+            p.created_at,
+            p.updated_at
+        FROM posts p
+            JOIN members m ON p.member_id = m.member_id
+        where p.post_id = ${postId}
+            AND p.deleted_yn = 'N'
+    </select>
 </mapper>

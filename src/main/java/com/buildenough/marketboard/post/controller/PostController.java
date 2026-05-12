@@ -1,6 +1,7 @@
 package com.buildenough.marketboard.post.controller;
 
 import com.buildenough.marketboard.member.dto.LoginMemberDto;
+import com.buildenough.marketboard.post.dto.PostDetailDto;
 import com.buildenough.marketboard.post.dto.PostListDto;
 import com.buildenough.marketboard.post.dto.PostWriteDto;
 import com.buildenough.marketboard.post.service.PostService;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -49,5 +51,12 @@ public class PostController {
         List<PostListDto> posts = postService.findAllPosts();
         model.addAttribute("posts", posts);
         return "post/list";
+    }
+
+    @GetMapping("/posts/{postId}")
+    public String detail(@PathVariable Long postId, Model model) {
+        PostDetailDto post = postService.findPostById(postId);
+        model.addAttribute("post", post);
+        return "post/detail";
     }
 }

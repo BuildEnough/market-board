@@ -1,5 +1,6 @@
 package com.buildenough.marketboard.post.service;
 
+import com.buildenough.marketboard.post.dto.PostDetailDto;
 import com.buildenough.marketboard.post.dto.PostListDto;
 import com.buildenough.marketboard.post.dto.PostWriteDto;
 import com.buildenough.marketboard.post.mapper.PostMapper;
@@ -19,5 +20,9 @@ public class PostService {
 
     public List<PostListDto> findAllPosts() {
         return postMapper.findAllPosts();
+    }
+
+    public PostDetailDto findPostById(Long postId) {
+        return postMapper.findPostById(postId);
     }
 }
