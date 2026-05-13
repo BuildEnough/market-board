@@ -25,4 +25,8 @@ public class PostService {
     public PostDetailDto findPostById(Long postId) {
         return postMapper.findPostById(postId);
     }
+
+    public void increaseViewCount(Long postId) {
+        postMapper.increaseViewCount(postId);
+    }
 }

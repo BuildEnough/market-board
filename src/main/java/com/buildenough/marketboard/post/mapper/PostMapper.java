@@ -14,4 +14,6 @@ public interface PostMapper {
     List<PostListDto> findAllPosts();
 
     PostDetailDto findPostById(Long postId);
+
+    void increaseViewCount(Long postId);
 }
