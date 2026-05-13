@@ -55,10 +55,24 @@ public class PostController {
 
     @GetMapping("/posts/{postId}")
     public String detail(@PathVariable Long postId, Model model) {
-        postService.increaseViewCount(postId); // 조회수 상승
+        postService.increaseViewCount(postId); // 조회수 상승, findPostById보다 먼저 실행해야함
 
         PostDetailDto post = postService.findPostById(postId);
         model.addAttribute("post", post);
         return "post/detail";
+    }
+
+    @GetMapping("/posts/{postId}/edit")
+    public String editForm(@PathVariable Long postId, HttpSession session, Model model) {
+        LoginMemberDto loginMember = (LoginMemberDto) session.getAttribute("loginMember");
+
+        if (loginMember == null) {
+            return "redirect:/members/login";
+        }
+
+        PostDetailDto post = postService.findPostById(postId);
+        model.addAttribute("post", post);
+
+        return "post/edit";
     }
 }
