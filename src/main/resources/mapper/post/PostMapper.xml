@@ -51,4 +51,15 @@
         where post_id = #{postId}
             AND deleted_yn = 'N'
     </update>
+
+    <update id="updatePost" parameterType="com.buildenough.marketboard.post.dto.PostUpdateDto">
+        UPDATE posts
+        SET
+            title = #{title},
+            content = #{content},
+            updated_at = NOW()
+        WHERE post_id = #{postId}
+            AND member_id = #{memberId}
+            AND deleted_yn = 'N'
+    </update>
 </mapper>

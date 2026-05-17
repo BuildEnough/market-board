@@ -2,6 +2,7 @@ package com.buildenough.marketboard.post.service;
 
 import com.buildenough.marketboard.post.dto.PostDetailDto;
 import com.buildenough.marketboard.post.dto.PostListDto;
+import com.buildenough.marketboard.post.dto.PostUpdateDto;
 import com.buildenough.marketboard.post.dto.PostWriteDto;
 import com.buildenough.marketboard.post.mapper.PostMapper;
 import lombok.RequiredArgsConstructor;
@@ -28,5 +29,9 @@ public class PostService {
 
     public void increaseViewCount(Long postId) {
         postMapper.increaseViewCount(postId);
+    }
+
+    public void updatePost(PostUpdateDto postUpdateDto) {
+        postMapper.updatePost(postUpdateDto);
     }
 }

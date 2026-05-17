@@ -3,6 +3,7 @@ package com.buildenough.marketboard.post.controller;
 import com.buildenough.marketboard.member.dto.LoginMemberDto;
 import com.buildenough.marketboard.post.dto.PostDetailDto;
 import com.buildenough.marketboard.post.dto.PostListDto;
+import com.buildenough.marketboard.post.dto.PostUpdateDto;
 import com.buildenough.marketboard.post.dto.PostWriteDto;
 import com.buildenough.marketboard.post.service.PostService;
 import jakarta.servlet.http.HttpSession;
@@ -74,5 +75,21 @@ public class PostController {
         model.addAttribute("post", post);
 
         return "post/edit";
+    }
+
+    @PostMapping("/posts/{postId}/edit")
+    public String edit(@PathVariable Long postId, PostUpdateDto postUpdateDto, HttpSession session) {
+        LoginMemberDto loginMember = (LoginMemberDto) session.getAttribute("loginMember");
+
+        if (loginMember == null) {
+            return "redirect:/members/login";
+        }
+
+        postUpdateDto.setPostId(postId);
+        postUpdateDto.setMemberId(loginMember.getMemberId());
+
+        postService.updatePost(postUpdateDto);
+
+        return "redirect:/posts/" + postId;
     }
 }

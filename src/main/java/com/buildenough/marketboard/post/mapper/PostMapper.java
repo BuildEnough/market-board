@@ -2,6 +2,7 @@ package com.buildenough.marketboard.post.mapper;
 
 import com.buildenough.marketboard.post.dto.PostDetailDto;
 import com.buildenough.marketboard.post.dto.PostListDto;
+import com.buildenough.marketboard.post.dto.PostUpdateDto;
 import com.buildenough.marketboard.post.dto.PostWriteDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,4 +17,6 @@ public interface PostMapper {
     PostDetailDto findPostById(Long postId);
 
     void increaseViewCount(Long postId);
+
+    void updatePost(PostUpdateDto postUpdateDto);
 }
