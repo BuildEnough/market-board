@@ -19,4 +19,6 @@ public interface PostMapper {
     void increaseViewCount(Long postId);
 
     void updatePost(PostUpdateDto postUpdateDto);
+
+    void deletePost(Long postId, Long memberId);
 }

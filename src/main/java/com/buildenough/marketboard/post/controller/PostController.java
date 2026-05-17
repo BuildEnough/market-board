@@ -92,4 +92,17 @@ public class PostController {
 
         return "redirect:/posts/" + postId;
     }
+
+    @PostMapping("/posts/{postId}/delete")
+    public String delete(@PathVariable Long postId, HttpSession session) {
+        LoginMemberDto loginMember = (LoginMemberDto) session.getAttribute("loginMember");
+
+        if (loginMember == null) {
+            return "redirect:/members/login";
+        }
+
+        postService.deletePost(postId, loginMember.getMemberId());
+
+        return "redirect:/posts";
+    }
 }

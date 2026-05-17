@@ -34,4 +34,8 @@ public class PostService {
     public void updatePost(PostUpdateDto postUpdateDto) {
         postMapper.updatePost(postUpdateDto);
     }
+
+    public void deletePost(Long postId, Long memberId) {
+        postMapper.deletePost(postId, memberId);
+    }
 }

@@ -62,4 +62,14 @@
             AND member_id = #{memberId}
             AND deleted_yn = 'N'
     </update>
+
+    <update id="deletePost">
+        UPDATE posts
+        SET
+            deleted_yn = 'Y',
+            updated_at = NOW()
+        WHERE post_id = #{postId}
+        AND member_id = #{memberId}
+        AND deleted_yn = 'N'
+    </update>
 </mapper>
